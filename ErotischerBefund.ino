@@ -94,39 +94,32 @@ void befund() {
   printer.setSize('M');
   printer.justify('C');
   printer.underlineOn();
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&t_headline1));
-  printer.println(stringBuffer);
+  printer.println("Erotischer Befund");
   printer.setSize('S');
   printer.underlineOff();
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&t_headline2));
-  printer.println(stringBuffer);
+  printer.println("Zentrum fuer Hurologie\nJohanna Bank & Bjoern Merwe");
   printer.justify('L');
   printer.boldOn();
   printer.underlineOn();
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&t_diagnose));
-  printer.println(stringBuffer);
+  printer.println("Diagnose");
   printer.underlineOff();
   printer.boldOff();
-  float ges = rateGes();
-  float geb = rateGeb();
-  float fig = rateFig();
-  float sch = rateSch();
-  float ars = rateArs();
-  float zwi = rateZwi();
-  float schnitt = (ges + geb + fig + sch + ars + zwi) / 6.0;
+  float gesicht = rateGesicht();
+  float gebiss = rateGebiss();
+  float figur = rateFigur();
+  float schritt = rateSchritt();
+  float arsch = rateArsch();
+  float zwischenmenschlich = rateZwischenmenschlich();
+  float schnitt = (gesicht + gebiss + figur + schritt + arsch + zwischenmenschlich) / 6.0;
   printer.boldOn();
   rateGesamtnote(round(schnitt));
   printer.boldOff();
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&t_divider));
-  printer.println(stringBuffer);
+  printer.println("------------------------------");
   kommentar();
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&t_divider));
-  printer.println(stringBuffer);
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&t_disclaimer));
-  printer.println(stringBuffer);
+  printer.println("------------------------------");
+  printer.println("Vertrauliches Dokument, bitte\naufbewahren. Es bediente Sie");
   printer.boldOn();
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&t_servedby));
-  printer.println(stringBuffer);
+  printer.println("Johanna Bank");
   printer.boldOff();
   printer.feed(2);
   printer.flush();
@@ -141,10 +134,9 @@ void kommentar() {
   printer.println(stringBuffer);
 }
 
-int rateGes() {
+int rateGesicht() {
   int rating = random(1, 11);
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&s_kges));
-  playSound(stringBuffer);
+  playSound("kategorie/gesicht.mp3");
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(sound_rating[rating - 1])));
   playSound(stringBuffer);
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(text_rating_ges[rating - 1])));
@@ -153,10 +145,9 @@ int rateGes() {
   return rating;
 }
 
-int rateGeb() {
+int rateGebiss() {
   int rating = random(1, 11);
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&s_kgeb));
-  playSound(stringBuffer);
+  playSound("kategorie/gebiss.mp3");
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(sound_rating[rating - 1])));
   playSound(stringBuffer);
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(text_rating_geb[rating - 1])));
@@ -165,10 +156,9 @@ int rateGeb() {
   return rating;
 }
 
-int rateFig() {
+int rateFigur() {
   int rating = random(1, 11);
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&s_kfig));
-  playSound(stringBuffer);
+  playSound("kategorie/figur.mp3");
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(sound_rating[rating - 1])));
   playSound(stringBuffer);
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(text_rating_fig[rating - 1])));
@@ -177,10 +167,9 @@ int rateFig() {
   return rating;
 }
 
-int rateSch() {
+int rateSchritt() {
   int rating = random(1, 11);
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&s_ksch));
-  playSound(stringBuffer);
+  playSound("kategorie/schritt.mp3");
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(sound_rating[rating - 1])));
   playSound(stringBuffer);
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(text_rating_sch[rating - 1])));
@@ -189,10 +178,9 @@ int rateSch() {
   return rating;
 }
 
-int rateArs() {
+int rateArsch() {
   int rating = random(1, 11);
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&s_kars));
-  playSound(stringBuffer);
+  playSound("kategorie/arsch.mp3");
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(sound_rating[rating - 1])));
   playSound(stringBuffer);
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(text_rating_ars[rating - 1])));
@@ -201,10 +189,9 @@ int rateArs() {
   return rating;
 }
 
-int rateZwi() {
+int rateZwischenmenschlich() {
   int rating = random(1, 11);
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&s_kzwi));
-  playSound(stringBuffer);
+  playSound("kategorie/zwischenmenschlich.mp3");
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(sound_rating[rating - 1])));
   playSound(stringBuffer);
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(text_rating_zwi[rating - 1])));
@@ -219,8 +206,7 @@ void rateGesamtnote(int rating) {
   } else   if (rating > 10) {
     rating = 10;
   }
-  strcpy_P(stringBuffer, (char*)pgm_read_word(&s_kgesamt));
-  playSound(stringBuffer);
+  playSound("kategorie/gesamtnote.mp3");
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(sound_rating[rating - 1])));
   playSound(stringBuffer);
   strcpy_P(stringBuffer, (char*)pgm_read_word(&(text_rating[rating - 1])));

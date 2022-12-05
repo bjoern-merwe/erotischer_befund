@@ -1,18 +1,3 @@
-const char t_headline1[] PROGMEM = "Erotischer Befund";
-const char t_headline2[] PROGMEM = "Zentrum fuer Hurologie\nJohanna Bank & Bjoern Merwe";
-const char t_diagnose[] PROGMEM = "Diagnose";
-const char t_divider[] PROGMEM = "------------------------------";
-const char t_disclaimer[] PROGMEM = "Vertrauliches Dokument, bitte\naufbewahren. Es bediente Sie";
-const char t_servedby[] PROGMEM = "Johanna Bank";
-
-const char s_kges[] PROGMEM = "kategorie/gesicht.mp3";
-const char s_kgeb[] PROGMEM = "kategorie/gebiss.mp3";
-const char s_kfig[] PROGMEM = "kategorie/figur.mp3";
-const char s_ksch[] PROGMEM = "kategorie/schritt.mp3";
-const char s_kars[] PROGMEM = "kategorie/arsch.mp3";
-const char s_kzwi[] PROGMEM = "kategorie/zwischenmenschlich.mp3";
-const char s_kgesamt[] PROGMEM = "kategorie/gesamtnote.mp3";
-
 const char t_k_00[] PROGMEM = "Aeltliches Fickvieh.";
 const char t_k_01[] PROGMEM = "Alter Gaul auf flott gemacht.";
 const char t_k_02[] PROGMEM = "Auf jeden fall sehr naturgeil.";
